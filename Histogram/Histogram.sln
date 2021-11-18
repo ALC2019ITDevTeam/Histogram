@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29201.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Histogram", "Histogram\Histogram.csproj", "{59EF7AF7-DF96-4A65-91BD-63EAC90E0BCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HistogramTests", "HistogramTests\HistogramTests.csproj", "{6148C171-7F39-4976-AA5E-1463EC9936C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FC4378FA-21A6-4A12-9CEB-E15AE5238708}"
+	ProjectSection(SolutionItems) = preProject
+		TestSettings.testsettings = TestSettings.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59EF7AF7-DF96-4A65-91BD-63EAC90E0BCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59EF7AF7-DF96-4A65-91BD-63EAC90E0BCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59EF7AF7-DF96-4A65-91BD-63EAC90E0BCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59EF7AF7-DF96-4A65-91BD-63EAC90E0BCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6148C171-7F39-4976-AA5E-1463EC9936C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6148C171-7F39-4976-AA5E-1463EC9936C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6148C171-7F39-4976-AA5E-1463EC9936C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6148C171-7F39-4976-AA5E-1463EC9936C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5F47EBC-BE14-4B0E-BC7E-0786DFB799C6}
+	EndGlobalSection
+EndGlobal
