@@ -7,7 +7,7 @@ using System.Drawing;
 namespace HistogramTests
 {
     /// <summary>
-    /// UnitTest の概要の説明
+    /// 単体テストです
     /// </summary>
     [TestClass]
     public class UnitTest
@@ -29,7 +29,7 @@ namespace HistogramTests
         public void イメージの大きさと面積を正常に計算できる()
         {
             var image = new Bitmap(256, 145);
-            var imageSize = HistogramProgram.ImageLabelSize(image);
+            var imageSize = Extensions.ImageLabelSize(image);
 
             Assert.AreEqual(imageSize, "X=256, Y=145　37120 Points");
             return;
@@ -52,7 +52,7 @@ namespace HistogramTests
             histogramMaxValue.Add(10, 255); // 最大値
             histogramMaxValue.Add(35, 250);
             var histogramMaxIndex = 255;
-            string peakHistogram = HistogramProgram.HistogramMax(histogramMaxValue, histogramMaxIndex);
+            string peakHistogram = Extensions.HistogramMax(histogramMaxValue, histogramMaxIndex);
 
             Assert.AreEqual(peakHistogram, "10");
             return;
@@ -68,7 +68,7 @@ namespace HistogramTests
             histogramMaxValue.Add(150, 215);
             histogramMaxValue.Add(219, 255); // 最大値
             var histogramMaxIndex = 255;
-            string peakHistogram = HistogramProgram.HistogramMax(histogramMaxValue, histogramMaxIndex);
+            string peakHistogram = Extensions.HistogramMax(histogramMaxValue, histogramMaxIndex);
 
             Assert.AreEqual(peakHistogram, "10，125，219");
             return;
@@ -78,7 +78,7 @@ namespace HistogramTests
         public void 現在時刻を含んだCSVデフォルトファイル名を生成できる()
         {
             DateTime dateTime = DateTime.Now;
-            var defaultFileName = HistogramProgram.PeakListDefaultFileName(dateTime);
+            var defaultFileName = Extensions.PeakListDefaultFileName(dateTime);
 
             Assert.AreEqual(defaultFileName, "PeakList_" + dateTime.ToString("yyyyMMddHHmm") + ".csv");
             return;
@@ -90,7 +90,7 @@ namespace HistogramTests
             var fileName = "test";
             var filePath = "C:\\Program Files\\test.bmp";
             DateTime dateTime = DateTime.Now;
-            var defaultFileName = HistogramProgram.HistogramDefaultFileName(filePath, dateTime);
+            var defaultFileName = Extensions.HistogramDefaultFileName(filePath, dateTime);
 
             Assert.AreEqual(defaultFileName, "Histogram(" + fileName + ")_" + dateTime.ToString("yyyyMMddHHmm") + ".bmp");
             return;
@@ -102,7 +102,7 @@ namespace HistogramTests
             var fileName = "test";
             var filePath = "C:\\Program Files\\...\\test.bmp";
             DateTime dateTime = DateTime.Now;
-            var defaultFileName = HistogramProgram.HistogramDefaultFileName(filePath, dateTime);
+            var defaultFileName = Extensions.HistogramDefaultFileName(filePath, dateTime);
 
             Assert.AreEqual(defaultFileName, "Histogram(" + fileName + ")_" + dateTime.ToString("yyyyMMddHHmm") + ".bmp");
             return;
@@ -112,7 +112,7 @@ namespace HistogramTests
         public void 画像ファイルパスを出力できる()
         {
             var filePath = "C:\\Users\\test\\Desktop\\TestHistogram.bmp";
-            filePath = HistogramProgram.ShortenDirectory(filePath);
+            filePath = Extensions.ShortenDirectory(filePath);
 
             Assert.AreEqual(filePath, "C:\\Users\\test\\Desktop\\TestHistogram.bmp");
             return;
@@ -122,7 +122,7 @@ namespace HistogramTests
         public void 画像ファイルパスを短縮して出力できる()
         {
             var filePath = "C:\\Users\\TestUser\\Desktop\\NewFolder\\TestHistogram.bmp";
-            filePath = HistogramProgram.ShortenDirectory(filePath);
+            filePath = Extensions.ShortenDirectory(filePath);
 
             Assert.AreEqual(filePath, "C:\\...\\NewFolder\\TestHistogram.bmp");
             return;
@@ -132,7 +132,7 @@ namespace HistogramTests
         public void 画像ファイルパスをさらに短縮して出力できる()
         {
             var filePath = "C:\\Users\\TestUser\\Desktop\\NewFolder_TestHistogram\\NewTestHistogram_TestFile.bmp";
-            filePath = HistogramProgram.ShortenDirectory(filePath);
+            filePath = Extensions.ShortenDirectory(filePath);
 
             Assert.AreEqual(filePath, "C:\\...\\NewTestHistogram_TestFile.bmp");
             return;

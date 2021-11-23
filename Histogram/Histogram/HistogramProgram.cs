@@ -207,7 +207,7 @@ namespace Histogram
                 {
                     int i = fileNames.ToList().IndexOf(file);
                     imageList.Add(new ImageItem(i, file, new Bitmap(file)));
-                    imageList[i].ImageLabel = ImageLabelSize(imageList[i].SourceImage);
+                    imageList[i].ImageLabel = Extensions.ImageLabelSize(imageList[i].SourceImage);
                     listViewItem = sourceImageListView.Items.Add((i + 1).ToString());
                     listViewItem.SubItems.Add(Path.GetFileName(imageList[i].Path));
                     listViewItem.SubItems.Add("");
@@ -215,7 +215,7 @@ namespace Histogram
 
                 sourceImage.Image = imageList[0].SourceImage;
                 histogramImageLabel.Text = imageList[0].ImageLabel;
-                sourceImageLabel.Text = ShortenDirectory(imageList[0].Path);
+                sourceImageLabel.Text = Extensions.ShortenDirectory(imageList[0].Path);
                 sourceImageListView.Items[0].Selected = true;
             }
             catch (Exception ex)
@@ -272,7 +272,7 @@ namespace Histogram
                         {
                             int i = fileInfo.ToList().IndexOf(file);
                             imageList.Add(new ImageItem(i, file.FullName, new Bitmap(file.FullName)));
-                            imageList[i].ImageLabel = ImageLabelSize(imageList[i].SourceImage);
+                            imageList[i].ImageLabel = Extensions.ImageLabelSize(imageList[i].SourceImage);
                             listViewItem = sourceImageListView.Items.Add((i + 1).ToString());
                             listViewItem.SubItems.Add(Path.GetFileName(imageList[i].Path));
                             listViewItem.SubItems.Add("");
@@ -280,7 +280,7 @@ namespace Histogram
 
                         sourceImage.Image = imageList[0].SourceImage;
                         histogramImageLabel.Text = imageList[0].ImageLabel;
-                        sourceImageLabel.Text = ShortenDirectory(imageList[0].Path);
+                        sourceImageLabel.Text = Extensions.ShortenDirectory(imageList[0].Path);
                         sourceImageListView.Items[0].Selected = true;
                     }
                     catch (Exception ex)
@@ -315,7 +315,7 @@ namespace Histogram
             {
                 fileLoaded = false;
                 DateTime dateTime = DateTime.Now;
-                saveBitmapFileDialog.FileName = HistogramDefaultFileName(sourceImageLabel.Text, DateTime.Now);
+                saveBitmapFileDialog.FileName = Extensions.HistogramDefaultFileName(sourceImageLabel.Text, DateTime.Now);
                 saveBitmapFileDialog.Filter = "画像ファイル(*.bmp)|*.bmp";
                 saveBitmapFileDialog.RestoreDirectory = true;
 
@@ -343,26 +343,6 @@ namespace Histogram
         }
 
         /// <summary>
-        /// ヒストグラム画像デフォルトファイル名を設定する
-        /// </summary>
-        /// <param name="filePath">ファイルパス</param>
-        /// <param name="dateTime">日時</param>
-        /// <returns>ファイル名</returns>
-        public string HistogramDefaultFileName(string filePath, DateTime dateTime)
-        {
-            if (filePath != "Clipboard")
-            {
-                if (filePath.Contains("\\...\\"))
-                {
-                    filePath.Replace("\\...\\", "\\");
-                }
-                filePath = Path.GetFileName(filePath);
-                filePath = filePath.Remove(filePath.Length - 4);
-            }
-            return @"Histogram(" + filePath + ")_" + dateTime.ToString("yyyyMMddHHmm") + ".bmp";
-        }
-
-        /// <summary>
         /// ファイルタブ ＞ ピーク位置リストを保存 を選択したときに、ファイルを保存する
         /// </summary>
         /// <param name="sender"></param>
@@ -378,7 +358,7 @@ namespace Histogram
                 commonFileDialogComboBox.Items.Add(new CommonFileDialogComboBoxItem("UTF-8"));
                 commonFileDialogComboBox.SelectedIndex = 0;
                 saveCsvFileDialog.Controls.Add(commonFileDialogComboBox);
-                saveCsvFileDialog.DefaultFileName = PeakListDefaultFileName(DateTime.Now);
+                saveCsvFileDialog.DefaultFileName = Extensions.PeakListDefaultFileName(DateTime.Now);
                 saveCsvFileDialog.Filters.Add(new CommonFileDialogFilter("csvファイル", "*.csv"));
                 saveCsvFileDialog.RestoreDirectory = true;
 
@@ -415,16 +395,6 @@ namespace Histogram
                 fileLoaded = true;
             }
             return;
-        }
-
-        /// <summary>
-        /// CSVデフォルトファイル名を設定する
-        /// </summary>
-        /// <param name="dateTime">日時</param>
-        /// <returns>ファイル名</returns>
-        public string PeakListDefaultFileName(DateTime dateTime)
-        {
-            return @"PeakList_" + dateTime.ToString("yyyyMMddHHmm") + ".csv";
         }
 
         /// <summary>
@@ -502,7 +472,7 @@ namespace Histogram
                 sourceImageListView.Items.Clear();
                 imageList.Clear();
                 imageList.Add(new ImageItem(0, "Clipboard", new Bitmap(ClipboardImage)));
-                imageList[0].ImageLabel = ImageLabelSize(imageList[0].SourceImage);
+                imageList[0].ImageLabel = Extensions.ImageLabelSize(imageList[0].SourceImage);
                 ListViewItem listViewItem = sourceImageListView.Items.Add("1");
                 listViewItem.SubItems.Add("Clipboard");
                 listViewItem.SubItems.Add("");
@@ -600,7 +570,7 @@ namespace Histogram
                 sourceImage.Image = imageList[index].SourceImage;
                 histogramImageLabel.Text = imageList[index].ImageLabel;
                 histogramImage.Image = imageList[index].HistogramImage;
-                sourceImageLabel.Text = ShortenDirectory(imageList[index].Path);
+                sourceImageLabel.Text = Extensions.ShortenDirectory(imageList[index].Path);
             }
 
             ToolStripMenuItemEnabled();
@@ -682,50 +652,9 @@ namespace Histogram
                 sourceImage.Image = imageList[index].SourceImage;
                 histogramImageLabel.Text = imageList[index].ImageLabel;
                 histogramImage.Image = imageList[index].HistogramImage;
-                sourceImageLabel.Text = ShortenDirectory(imageList[index].Path);
+                sourceImageLabel.Text = Extensions.ShortenDirectory(imageList[index].Path);
             }
             return;
-        }
-
-        /// <summary>
-        /// 長いファイルパスを短縮する
-        /// </summary>
-        /// <param name="path">ファイルパス</param>
-        /// <returns>ファイルパス</returns>
-        public string ShortenDirectory(string path)
-        {
-            Bitmap canvas = new Bitmap(15 * path.Length, 20);
-            Graphics graphics = Graphics.FromImage(canvas);
-            Font fontStyle = new Font("メイリオ", 9F);
-            TextRenderer.DrawText(graphics, path, fontStyle, new Point(0, 0), Color.Black);
-            Size stringSize = TextRenderer.MeasureText(graphics, path, fontStyle);
-
-            string labelText = path;
-            if (stringSize.Width >= 325)
-            {
-                labelText = Path.GetPathRoot(path) + "...\\" + Path.GetFileName(Path.GetDirectoryName(path)) + "\\" + Path.GetFileName(path);
-                graphics.Dispose();
-                canvas = new Bitmap(15 * labelText.Length, 20);
-                graphics = Graphics.FromImage(canvas);
-                TextRenderer.DrawText(graphics, labelText, fontStyle, new Point(0, 0), Color.Black);
-                stringSize = TextRenderer.MeasureText(graphics, labelText, fontStyle);
-
-                if (stringSize.Width >= 325)
-                {
-                    labelText = Path.GetPathRoot(path) + "...\\" + Path.GetFileName(path);
-                }
-            }
-            return labelText;
-        }
-
-        /// <summary>
-        /// イメージの大きさ・面積を計算する
-        /// </summary>
-        /// <param name="image">イメージ</param>
-        /// <returns>イメージの大きさ・面積</returns>
-        public string ImageLabelSize(Image image)
-        {
-            return "X=" + image.Width + ", Y=" + image.Height + "　" + (image.Width * image.Height) + " Points";
         }
 
         /// <summary>
@@ -805,7 +734,7 @@ namespace Histogram
 
             // 平滑化したヒストグラムの最大値とそのインデックスを計算・表示する
             int histogramMaxIndex = histogramMaxValue.Max(item => item.Value);
-            string peakHistogram = HistogramMax(histogramMaxValue, histogramMaxIndex);
+            string peakHistogram = Extensions.HistogramMax(histogramMaxValue, histogramMaxIndex);
             histogramImageItem.RotateFlip(RotateFlipType.RotateNoneFlipY);
             Graphics histogramGraphicsText = Graphics.FromImage(histogramImageItem);
             histogramGraphicsText.DrawString("Peak=" + peakHistogram, new Font("MS UI Gothic", 9, FontStyle.Regular), Brushes.Black, 20, 0);
@@ -819,25 +748,6 @@ namespace Histogram
                 sourceImageListView.Items[listItem].SubItems[2].Text = peakHistogram;
             }
             return new Bitmap(histogramImageItem);
-        }
-
-        /// <summary>
-        /// ヒストグラムの最大値を文字列に変換する
-        /// </summary>
-        /// <param name="histogramMaxValue">ヒストグラムの最大値の候補</param>
-        /// <param name="histogramMaxIndex">ヒストグラムの最大値</param>
-        /// <returns>ヒストグラムの最大値</returns>
-        public string HistogramMax(Dictionary<int, int> histogramMaxValue, int histogramMaxIndex)
-        {
-            string peakHistogram = string.Empty;
-            foreach (KeyValuePair<int, int> item in histogramMaxValue)
-            {
-                if (item.Value == histogramMaxIndex)
-                {
-                    peakHistogram += item.Key + "，";
-                }
-            }
-            return peakHistogram.Remove(peakHistogram.Length - 1);
         }
     }
 }

@@ -84,6 +84,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions.cs" />
+    <Compile Include="GenCSV.cs" />
+    <Compile Include="GenImage.cs" />
     <Compile Include="HistogramProgram.cs">
       <SubType>Form</SubType>
     </Compile>
