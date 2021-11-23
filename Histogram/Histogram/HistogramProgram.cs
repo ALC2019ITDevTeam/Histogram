@@ -364,33 +364,7 @@ namespace Histogram
 
                 if (saveCsvFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
                 {
-                    try
-                    {
-                        using (StreamWriter streamWriter = new StreamWriter(saveCsvFileDialog.FileName, false, Encoding.GetEncoding(commonFileDialogComboBox.Items[commonFileDialogComboBox.SelectedIndex].Text.ToLower())))
-                        {
-                            string listHeader = string.Empty;
-                            for (int i = 0; i < sourceImageListView.Columns.Count; i++)
-                            {
-                                listHeader += sourceImageListView.Columns[i].Text + ",";
-                            }
-                            streamWriter.WriteLine(listHeader.Remove(listHeader.Length - 1, 1));
-
-                            foreach (ListViewItem listViewItem in sourceImageListView.Items)
-                            {
-                                string listitem = string.Empty;
-                                foreach (ListViewItem.ListViewSubItem subItem in listViewItem.SubItems)
-                                {
-                                    listitem += subItem.Text + ",";
-                                }
-                                streamWriter.WriteLine(listitem.Remove(listitem.Length - 1, 1));
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("ファイル保存時にエラーが発生しました。\n\n詳細：" + ex.ToString(), "ヒストグラム分析プログラム", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    }
+                    SaveCsv.GenerateCsv(sourceImageListView, saveCsvFileDialog.FileName, Encoding.GetEncoding(commonFileDialogComboBox.Items[commonFileDialogComboBox.SelectedIndex].Text.ToLower()));
                 }
                 fileLoaded = true;
             }
