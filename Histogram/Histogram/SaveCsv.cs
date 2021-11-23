@@ -16,7 +16,7 @@ namespace Histogram
         /// <param name="listView">リストビュー</param>
         /// <param name="fileName">保存するCSVファイルのファイル名</param>
         /// <param name="encoding">保存するCSVファイルのエンコード</param>
-        public static void GenerateCsv(ListView listView, string fileName, Encoding encoding)
+        public static void GenerateCsvFile(ListView listView, string fileName, Encoding encoding)
         {
             try
             {

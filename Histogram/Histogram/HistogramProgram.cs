@@ -364,7 +364,7 @@ namespace Histogram
 
                 if (saveCsvFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
                 {
-                    SaveCsv.GenerateCsv(sourceImageListView, saveCsvFileDialog.FileName, Encoding.GetEncoding(commonFileDialogComboBox.Items[commonFileDialogComboBox.SelectedIndex].Text.ToLower()));
+                    SaveCsv.GenerateCsvFile(sourceImageListView, saveCsvFileDialog.FileName, Encoding.GetEncoding(commonFileDialogComboBox.Items[commonFileDialogComboBox.SelectedIndex].Text.ToLower()));
                 }
                 fileLoaded = true;
             }
