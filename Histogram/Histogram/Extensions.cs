@@ -9,7 +9,7 @@ namespace Histogram
     /// <summary>
     /// 静的メソッドを定義するクラスです
     /// </summary>
-    static public class Extensions
+    public static class Extensions
     {
         /// <summary>
         /// ヒストグラム画像デフォルトファイル名を設定する
@@ -17,7 +17,7 @@ namespace Histogram
         /// <param name="filePath">ファイルパス</param>
         /// <param name="dateTime">日時</param>
         /// <returns>ファイル名</returns>
-        static public string HistogramDefaultFileName(string filePath, DateTime dateTime)
+        public static string HistogramDefaultFileName(string filePath, DateTime dateTime)
         {
             if (filePath != "Clipboard")
             {
@@ -36,7 +36,7 @@ namespace Histogram
         /// </summary>
         /// <param name="dateTime">日時</param>
         /// <returns>ファイル名</returns>
-        static public string PeakListDefaultFileName(DateTime dateTime)
+        public static string PeakListDefaultFileName(DateTime dateTime)
         {
             return @"PeakList_" + dateTime.ToString("yyyyMMddHHmm") + ".csv";
         }
@@ -46,7 +46,7 @@ namespace Histogram
         /// </summary>
         /// <param name="path">ファイルパス</param>
         /// <returns>ファイルパス</returns>
-        static public string ShortenDirectory(string path)
+        public static string ShortenDirectory(string path)
         {
             Bitmap canvas = new Bitmap(15 * path.Length, 20);
             Graphics graphics = Graphics.FromImage(canvas);
@@ -77,7 +77,7 @@ namespace Histogram
         /// </summary>
         /// <param name="image">イメージ</param>
         /// <returns>イメージの大きさ・面積</returns>
-        static public string ImageLabelSize(Image image)
+        public static string ImageLabelSize(Image image)
         {
             return "X=" + image.Width + ", Y=" + image.Height + "　" + (image.Width * image.Height) + " Points";
         }
@@ -88,7 +88,7 @@ namespace Histogram
         /// <param name="histogramMaxValue">ヒストグラムの最大値の候補</param>
         /// <param name="histogramMaxIndex">ヒストグラムの最大値</param>
         /// <returns>ヒストグラムの最大値</returns>
-        static public string HistogramMax(Dictionary<int, int> histogramMaxValue, int histogramMaxIndex)
+        public static string HistogramMax(Dictionary<int, int> histogramMaxValue, int histogramMaxIndex)
         {
             string peakHistogram = string.Empty;
             foreach (KeyValuePair<int, int> item in histogramMaxValue)
