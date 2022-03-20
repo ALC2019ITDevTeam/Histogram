@@ -205,7 +205,6 @@ namespace Histogram
                 {
                     int i = fileNames.ToList().IndexOf(file);
                     imageList.Add(new ImageItem(i, file, new Bitmap(file)));
-                    imageList[i].ImageLabel = Extensions.ImageLabelSize(imageList[i].SourceImage);
                     listViewItem = sourceImageListView.Items.Add((i + 1).ToString());
                     listViewItem.SubItems.Add(Path.GetFileName(imageList[i].Path));
                     listViewItem.SubItems.Add("");
@@ -270,7 +269,6 @@ namespace Histogram
                         {
                             int i = fileInfo.ToList().IndexOf(file);
                             imageList.Add(new ImageItem(i, file.FullName, new Bitmap(file.FullName)));
-                            imageList[i].ImageLabel = Extensions.ImageLabelSize(imageList[i].SourceImage);
                             listViewItem = sourceImageListView.Items.Add((i + 1).ToString());
                             listViewItem.SubItems.Add(Path.GetFileName(imageList[i].Path));
                             listViewItem.SubItems.Add("");
@@ -449,7 +447,6 @@ namespace Histogram
                 sourceImageListView.Items.Clear();
                 imageList.Clear();
                 imageList.Add(new ImageItem(0, "Clipboard", new Bitmap(ClipboardImage)));
-                imageList[0].ImageLabel = Extensions.ImageLabelSize(imageList[0].SourceImage);
                 ListViewItem listViewItem = sourceImageListView.Items.Add("1");
                 listViewItem.SubItems.Add("Clipboard");
                 listViewItem.SubItems.Add("");

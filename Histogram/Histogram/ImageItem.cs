@@ -15,12 +15,12 @@ namespace Histogram
         /// <param name="sourceImage">読み込まれた画像</param>
         /// <param name="imageLabel">読み込まれた画像ファイルの大きさ、ピクセル面積</param>
         /// <param name="histogramImage">ヒストグラムの画像</param>
-        public ImageItem(int id, string path, Image sourceImage, string imageLabel = null, Image histogramImage = null)
+        public ImageItem(int id, string path, Image sourceImage, Image histogramImage = null)
         {
             Id = id;
             Path = path;
             SourceImage = sourceImage;
-            ImageLabel = imageLabel;
+            ImageLabel = Extensions.ImageLabelSize(sourceImage);
             HistogramImage = histogramImage;
         }
 
