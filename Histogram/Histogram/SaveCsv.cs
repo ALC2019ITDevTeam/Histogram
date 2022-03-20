@@ -17,7 +17,7 @@ namespace Histogram
         /// <param name="fileName">保存するCSVファイルのファイル名</param>
         /// <param name="encoding">保存するCSVファイルのエンコード</param>
         /// <returns>例外メッセージ</returns>
-        public static (bool, string) SaveCsvFile(ListView listView, string fileName, Encoding encoding)
+        public static (bool, string) SaveCsvFile(ListView listView, string fileName, string encoding)
         {
             try
             {
@@ -36,9 +36,9 @@ namespace Histogram
         /// <param name="listView">リストビュー</param>
         /// <param name="fileName">保存するCSVファイルのファイル名</param>
         /// <param name="encoding">保存するCSVファイルのエンコード</param>
-        public static void GenerateCsvFile(ListView listView, string fileName, Encoding encoding)
+        public static void GenerateCsvFile(ListView listView, string fileName, string encoding)
         {
-            using (StreamWriter streamWriter = new StreamWriter(fileName, false, encoding))
+            using (StreamWriter streamWriter = new StreamWriter(fileName, false, Encoding.GetEncoding(encoding)))
             {
                 string listHeader = string.Empty;
                 for (int i = 0; i < listView.Columns.Count; i++)

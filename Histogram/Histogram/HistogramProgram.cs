@@ -351,7 +351,7 @@ namespace Histogram
             {
                 DateTime dateTime = DateTime.Now;
                 CommonFileDialogComboBox commonFileDialogComboBox = new CommonFileDialogComboBox();
-                commonFileDialogComboBox.Items.Add(new CommonFileDialogComboBoxItem("SHIFT_JIS"));
+                commonFileDialogComboBox.Items.Add(new CommonFileDialogComboBoxItem("Shift-JIS"));
                 commonFileDialogComboBox.Items.Add(new CommonFileDialogComboBoxItem("UTF-8"));
                 commonFileDialogComboBox.SelectedIndex = 0;
                 saveCsvFileDialog.Controls.Add(commonFileDialogComboBox);
@@ -361,7 +361,7 @@ namespace Histogram
 
                 if (saveCsvFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
                 {
-                    (bool savedCsv, string exceptionText) = SaveCsv.SaveCsvFile(sourceImageListView, saveCsvFileDialog.FileName, Encoding.GetEncoding(commonFileDialogComboBox.Items[commonFileDialogComboBox.SelectedIndex].Text.ToLower()));
+                    (bool savedCsv, string exceptionText) = SaveCsv.SaveCsvFile(sourceImageListView, saveCsvFileDialog.FileName, commonFileDialogComboBox.Items[commonFileDialogComboBox.SelectedIndex].Text.ToLower());
                     if (!savedCsv)
                     {
                         MessageBox.Show("ファイル保存時にエラーが発生しました。\n\n詳細：" + exceptionText, "ヒストグラム分析プログラム", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -520,13 +520,14 @@ namespace Histogram
                     foreach (ImageItem item in imageList)
                     {
                         item.HistogramImage = HistogramCalculation((Bitmap)item.SourceImage, item.Id);
+                        string calculationStatus = (Math.Min((int)((float)(item.Id + 1) * 100.0f / (float)imageList.Count), 100)).ToString();
                         if (InvokeRequired)
                         {
-                            Invoke((MethodInvoker)(() => calculation.Text = "計算中(" + (Math.Min((int)((float)(item.Id + 1) * 100.0f / (float)imageList.Count), 100)).ToString() + "%)"));
+                            Invoke((MethodInvoker)(() => calculation.Text = "計算中(" + calculationStatus + "%)"));
                         }
                         else
                         {
-                            calculation.Text = "計算中(" + (Math.Min((int)((float)(item.Id + 1) * 100.0f / (float)imageList.Count), 100)).ToString() + "%)";
+                            calculation.Text = "計算中(" + calculationStatus + "%)";
                         }
                     }
                 }
