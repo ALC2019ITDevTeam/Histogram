@@ -12,7 +12,7 @@ namespace Histogram
     public static class Extensions
     {
         /// <summary>
-        /// ヒストグラム画像デフォルトファイル名を設定する
+        /// ヒストグラム画像のデフォルトファイル名を設定する
         /// </summary>
         /// <param name="filePath">ファイルパス</param>
         /// <param name="dateTime">日時</param>
@@ -32,7 +32,7 @@ namespace Histogram
         }
 
         /// <summary>
-        /// CSVデフォルトファイル名を設定する
+        /// CSVのデフォルトファイル名を設定する
         /// </summary>
         /// <param name="dateTime">日時</param>
         /// <returns>ファイル名</returns>

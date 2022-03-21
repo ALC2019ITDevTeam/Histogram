@@ -17,7 +17,7 @@ namespace Histogram
         /// </summary>
         /// <param name="sourceImageItem">ソース画像</param>
         /// <returns>ヒストグラム画像, ヒストグラムの最大値</returns>
-        public static (Bitmap, string) GenerateImage(Bitmap sourceImageItem)
+        public static (Bitmap, string) GenerateHistogramImage(Bitmap sourceImageItem)
         {
             Bitmap histogramImageItem = new Bitmap(256, 145);
             int brightness;

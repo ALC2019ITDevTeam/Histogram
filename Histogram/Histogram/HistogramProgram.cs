@@ -652,7 +652,7 @@ namespace Histogram
         /// <returns>ヒストグラム画像</returns>
         private Bitmap HistogramCalculation(Bitmap sourceImageItem, int listItem)
         {
-            (Bitmap histogramImage, string peakHistogram) = ConvertImageToHistogram.GenerateImage(sourceImageItem);
+            (Bitmap histogramImage, string peakHistogram) = ConvertImageToHistogram.GenerateHistogramImage(sourceImageItem);
 
             if (InvokeRequired)
             {
