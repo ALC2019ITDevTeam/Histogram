@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -468,7 +467,7 @@ namespace Histogram
         private void VersionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fileLoaded = false;
-            MessageBox.Show("ヒストグラム分析プログラム\nバージョン：1.0.2（R3.4.11更新）\n動作環境：.NET Framework 4.7.2以上\n\n©ALC 2019年度会員 近藤 健", "バージョン情報");
+            MessageBox.Show("ヒストグラム分析プログラム\nバージョン：1.0.3（2022.3.26 Release）\n動作環境：.NET Framework 4.7.2以上\n\n©ALC 2019年度会員 近藤 健", "バージョン情報");
             fileLoaded = true;
             return;
         }
